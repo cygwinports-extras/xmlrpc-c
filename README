@@ -1,0 +1,150 @@
+xmlrpc-c
+------------------------------------------
+XML-RPC is a quick-and-easy way to make procedure calls over the 
+Internet. It converts the procedure call into XML document, sends it to 
+a remote server using HTTP, and gets back the response as XML.
+
+This library provides a modular implementation of XML-RPC for C and C++.
+
+Runtime requirements:
+  cygwin-1.5.24-2
+  libcurl4-7.16.3-1
+
+Build requirements:
+(besides corresponding -devel packages)
+  cygwin-1.5.24-2
+  autoconf2.5-2.61-1
+  automake1.4-1.4p6-3
+  binutils-20060817-1
+  cygport-0.3.6-1
+  gcc-core-3.4.4-3
+  gcc-g++-3.4.4-3
+  libtool1.5-1.5.23a-2
+  make-3.81-1
+  sed-4.1.5-2
+
+Canonical website:
+  http://xmlrpc-c.sourceforge.net/
+
+Canonical download:
+  http://downloads.sourceforge.net/xmlrpc-c/
+
+-------------------------------------------
+
+Build instructions:
+  unpack xmlrpc-c-1.06.18-X-src.tar.bz2
+    if you use setup to install this src package, it will be
+	 unpacked under /usr/src automatically
+  cd /usr/src
+  cygport ./xmlrpc-c-1.06.18-X.cygport all
+
+This will create:
+  /usr/src/libxmlrpc-devel-1.06.18-X.tar.bz2
+  /usr/src/libxmlrpc3-1.06.18-X.tar.bz2
+  /usr/src/xmlrpc-c-1.06.18-X-src.tar.bz2
+  /usr/src/xmlrpc-c-1.06.18-X.tar.bz2
+
+-------------------------------------------
+
+Files included in the binary packages:
+
+(xmlrpc-c)
+  /usr/share/doc/Cygwin/xmlrpc-c-1.06.18.README
+  /usr/share/doc/xmlrpc-c-1.06.18/README
+
+(libxmlrpc3)
+  /usr/bin/cygxmlrpc++-3.dll
+  /usr/bin/cygxmlrpc-3.dll
+  /usr/bin/cygxmlrpc_abyss-3.dll
+  /usr/bin/cygxmlrpc_client++-3.dll
+  /usr/bin/cygxmlrpc_client-3.dll
+  /usr/bin/cygxmlrpc_cpp-3.dll
+  /usr/bin/cygxmlrpc_server++-3.dll
+  /usr/bin/cygxmlrpc_server-3.dll
+  /usr/bin/cygxmlrpc_server_abyss++-3.dll
+  /usr/bin/cygxmlrpc_server_abyss-3.dll
+  /usr/bin/cygxmlrpc_server_cgi-3.dll
+  /usr/bin/cygxmlrpc_util-3.dll
+  /usr/bin/cygxmlrpc_xmlparse-3.dll
+  /usr/bin/cygxmlrpc_xmltok-3.dll
+
+(libxmlrpc-devel)
+  /usr/bin/xmlrpc-c-config
+  /usr/include/XmlRpcCpp.h
+  /usr/include/xmlrpc-c/abyss.h
+  /usr/include/xmlrpc-c/base.h
+  /usr/include/xmlrpc-c/base.hpp
+  /usr/include/xmlrpc-c/client.h
+  /usr/include/xmlrpc-c/client.hpp
+  /usr/include/xmlrpc-c/client_global.h
+  /usr/include/xmlrpc-c/client_simple.hpp
+  /usr/include/xmlrpc-c/client_transport.hpp
+  /usr/include/xmlrpc-c/config.h
+  /usr/include/xmlrpc-c/girerr.hpp
+  /usr/include/xmlrpc-c/girmem.hpp
+  /usr/include/xmlrpc-c/oldcppwrapper.hpp
+  /usr/include/xmlrpc-c/oldxmlrpc.h
+  /usr/include/xmlrpc-c/registry.hpp
+  /usr/include/xmlrpc-c/server.h
+  /usr/include/xmlrpc-c/server_abyss.h
+  /usr/include/xmlrpc-c/server_abyss.hpp
+  /usr/include/xmlrpc-c/server_cgi.h
+  /usr/include/xmlrpc-c/server_w32httpsys.h
+  /usr/include/xmlrpc-c/timeout.hpp
+  /usr/include/xmlrpc-c/transport.h
+  /usr/include/xmlrpc-c/util.h
+  /usr/include/xmlrpc-c/xml.hpp
+  /usr/include/xmlrpc.h
+  /usr/include/xmlrpc_cgi.h
+  /usr/include/xmlrpc_client.h
+  /usr/include/xmlrpc_server.h
+  /usr/include/xmlrpc_server_abyss.h
+  /usr/include/xmlrpc_server_w32httpsys.h
+  /usr/lib/libxmlrpc++.a
+  /usr/lib/libxmlrpc++.dll.a
+  /usr/lib/libxmlrpc.a
+  /usr/lib/libxmlrpc.dll.a
+  /usr/lib/libxmlrpc.la
+  /usr/lib/libxmlrpc_abyss.a
+  /usr/lib/libxmlrpc_abyss.dll.a
+  /usr/lib/libxmlrpc_abyss.la
+  /usr/lib/libxmlrpc_client++.a
+  /usr/lib/libxmlrpc_client++.dll.a
+  /usr/lib/libxmlrpc_client.a
+  /usr/lib/libxmlrpc_client.dll.a
+  /usr/lib/libxmlrpc_client.la
+  /usr/lib/libxmlrpc_cpp.a
+  /usr/lib/libxmlrpc_cpp.dll.a
+  /usr/lib/libxmlrpc_server++.a
+  /usr/lib/libxmlrpc_server++.dll.a
+  /usr/lib/libxmlrpc_server.a
+  /usr/lib/libxmlrpc_server.dll.a
+  /usr/lib/libxmlrpc_server.la
+  /usr/lib/libxmlrpc_server_abyss++.a
+  /usr/lib/libxmlrpc_server_abyss++.dll.a
+  /usr/lib/libxmlrpc_server_abyss.a
+  /usr/lib/libxmlrpc_server_abyss.dll.a
+  /usr/lib/libxmlrpc_server_abyss.la
+  /usr/lib/libxmlrpc_server_cgi.a
+  /usr/lib/libxmlrpc_server_cgi.dll.a
+  /usr/lib/libxmlrpc_server_cgi.la
+  /usr/lib/libxmlrpc_util.a
+  /usr/lib/libxmlrpc_util.dll.a
+  /usr/lib/libxmlrpc_util.la
+  /usr/lib/libxmlrpc_xmlparse.a
+  /usr/lib/libxmlrpc_xmlparse.dll.a
+  /usr/lib/libxmlrpc_xmlparse.la
+  /usr/lib/libxmlrpc_xmltok.a
+  /usr/lib/libxmlrpc_xmltok.dll.a
+  /usr/lib/libxmlrpc_xmltok.la
+
+------------------
+
+Port Notes:
+
+----- version 1.06.18-1 -----
+Initial release for Cygwin.
+
+
+Cygwin port maintained by:
+http://cygwinports.dotsrc.org/
