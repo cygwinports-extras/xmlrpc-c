@@ -32,25 +32,25 @@ Canonical download:
 -------------------------------------------
 
 Build instructions:
-  unpack xmlrpc-c-1.06.18-X-src.tar.bz2
+  unpack xmlrpc-c-1.06.21-X-src.tar.bz2
     if you use setup to install this src package, it will be
 	 unpacked under /usr/src automatically
   cd /usr/src
-  cygport ./xmlrpc-c-1.06.18-X.cygport all
+  cygport ./xmlrpc-c-1.06.21-X.cygport all
 
 This will create:
-  /usr/src/libxmlrpc-devel-1.06.18-X.tar.bz2
-  /usr/src/libxmlrpc3-1.06.18-X.tar.bz2
-  /usr/src/xmlrpc-c-1.06.18-X-src.tar.bz2
-  /usr/src/xmlrpc-c-1.06.18-X.tar.bz2
+  /usr/src/libxmlrpc-devel-1.06.21-X.tar.bz2
+  /usr/src/libxmlrpc3-1.06.21-X.tar.bz2
+  /usr/src/xmlrpc-c-1.06.21-X-src.tar.bz2
+  /usr/src/xmlrpc-c-1.06.21-X.tar.bz2
 
 -------------------------------------------
 
 Files included in the binary packages:
 
 (xmlrpc-c)
-  /usr/share/doc/Cygwin/xmlrpc-c-1.06.18.README
-  /usr/share/doc/xmlrpc-c-1.06.18/README
+  /usr/share/doc/Cygwin/xmlrpc-c-1.06.21.README
+  /usr/share/doc/xmlrpc-c-1.06.21/README
 
 (libxmlrpc3)
   /usr/bin/cygxmlrpc++-3.dll
@@ -142,7 +142,7 @@ Files included in the binary packages:
 
 Port Notes:
 
------ version 1.06.18-1 -----
+----- version 1.06.21-1 -----
 Initial release for Cygwin.
 
 
