@@ -1,5 +1,5 @@
 category: Net
-requires: cygwin libcurl4
+requires: cygwin libcurl4 libwww0 libxml2
 external-source: xmlrpc-c
 sdesc: "XML-RPC C/C++ libraries (runtime libraries)"
 ldesc: "XML-RPC is a quick-and-easy way to make procedure calls over the 
