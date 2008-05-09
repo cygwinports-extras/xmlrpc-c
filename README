@@ -7,7 +7,7 @@ a remote server using HTTP, and gets back the response as XML.
 This library provides a modular implementation of XML-RPC for C and C++.
 
 Runtime requirements:
-  cygwin-1.5.25-7
+  cygwin-1.5.25-11
   libcurl4-7.16.3-1
   libwww0-5.4.0-1
   libxml2-2.6.32-1
@@ -95,12 +95,6 @@ Files included in the binary packages:
   /usr/include/xmlrpc-c/transport.h
   /usr/include/xmlrpc-c/util.h
   /usr/include/xmlrpc-c/xml.hpp
-  /usr/include/xmlrpc.h
-  /usr/include/xmlrpc_cgi.h
-  /usr/include/xmlrpc_client.h
-  /usr/include/xmlrpc_server.h
-  /usr/include/xmlrpc_server_abyss.h
-  /usr/include/xmlrpc_server_w32httpsys.h
   /usr/lib/libxmlrpc++.a
   /usr/lib/libxmlrpc++.dll.a
   /usr/lib/libxmlrpc.a
@@ -136,6 +130,9 @@ Files included in the binary packages:
 ------------------
 
 Port Notes:
+
+----- version 1.06.27-2 -----
+Removed top-level compatibility headers which conflict with xmlrpc-epi.
 
 ----- version 1.06.27-1 -----
 Version bump.  Added libxml2 and w3c-libwww support.
