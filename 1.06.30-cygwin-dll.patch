@@ -1,0 +1,113 @@
+--- origsrc/xmlrpc-c-1.06.30/Makefile.config.in	2008-03-25 09:24:58.000000000 -0500
++++ src/xmlrpc-c-1.06.30/Makefile.config.in	2008-07-23 21:18:45.515625000 -0500
+@@ -213,7 +213,8 @@
+ ifeq ($(HOST_OS),cygwin)
+   # This code is not finished; that's why we don't set SHARED_LIB_TYPE.
+   # If you can finish it and make it work on AIX, please do.
+-  # SHARED_LIB_TYPE = dll
++  SHARED_LIB_TYPE = dll
++  SHLIB_PREFIX = cyg
+   SHLIB_SUFFIX = dll
+ endif
+ 
+--- origsrc/xmlrpc-c-1.06.30/dll-common.make	1969-12-31 18:00:00.000000000 -0600
++++ src/xmlrpc-c-1.06.30/dll-common.make	2008-07-23 21:18:45.531250000 -0500
+@@ -0,0 +1,68 @@
++# -*-makefile-*-    <-- an Emacs control
++
++# The including make file must define these make variables:
++#
++# SHARED_LIBS_TO_INSTALL: List of the shared libraries that need to be
++#   installed -- just the basic library names.  E.g. "libfoo libbar"
++#
++# SHLIB_SUFFIX: Shared library filename suffix, e.g. "so".
++#
++# MAJ: Library major version number, e.g. "3" in file name "libfoo.3.1"
++#
++# MIN: Library minor version number, e.g. "1" in file name "libfoo.3.1"
++#
++# LDFLAGS_SHLIB: linker (Ld) flags needed to link object files together into
++#   a shared library.  May use $(SONAME) for the soname of the library.
++#   Include -lc if appropriate.
++#
++# LADD: Additional linker flags (normally set on the make command line).
++#
++# INSTALL_DATA: beginning of shell command to install a library file.
++#
++# DESTDIR: main installation directory
++#
++# LIBINST_DIR: directory in which to install libraries, relative to DESTDIR.
++#
++# LN_S: beginning of shell command to make symbolic link (e.g. "ln -s").
++#
++# CXXLD: beginning of shell command to link, e.g. "g++".
++
++# This make file defines these make variables that the including make file
++# can use:
++#
++# ALL_SHARED_LIBRARIES: list of targets to be dependencies of all: .
++
++# Including make file must contain a rule to build each library file
++# (e.g. libfoo.3.1)
++
++# This make file provides these rules:
++#
++# install-shared-libraries: install all shared libraries and the necessary
++# symbolic links.
++
++ALL_SHARED_LIBRARIES = \
++  $(SHARED_LIBS_TO_BUILD:lib%=$(SHLIB_PREFIX)%-$(MAJ).dll)
++
++# SONAME is to be referenced by $(LDSHLIB) in $(SHLIB_RULE)
++# SONAME is the name of the library file being built, with the minor
++#   version number cut off.  E.g. if we're building libfoo.so.1.2, SONAME
++#   is libfoo.so.1 .
++SONAME = $(@:$(SHLIB_PREFIX)%-$(MAJ).dll=lib%.dll.a)
++
++LDFLAGS_SHLIB += -shared -Wl,--enable-auto-image-base -Wl,--out-implib,$(SONAME)
++
++SHLIB_RULE = $(CXXLD) $(LDFLAGS_SHLIB) -o $@ $^ $(LADD)
++
++SHLIB_INSTALL_TARGETS = $(SHARED_LIBS_TO_INSTALL:%=%/install)
++
++#SHLIB_INSTALL_TARGETS is like "install/libfoo install/libbar"
++
++.PHONY: $(SHLIB_INSTALL_TARGETS)
++.PHONY: install-shared-libraries
++
++install-shared-libraries: $(SHLIB_INSTALL_TARGETS)
++
++$(SHLIB_INSTALL_TARGETS) X/install:lib%/install:$(SHLIB_PREFIX)%-$(MAJ).dll
++# $< is a library file name, e.g. libfoo.3.1 .
++	$(INSTALL_SHLIB) $< $(DESTDIR)$(LIBINST_DIR)/../bin/
++	$(INSTALL_SHLIB) $(<:$(SHLIB_PREFIX)%-$(MAJ).dll=lib%.dll.a) $(DESTDIR)$(LIBINST_DIR)/
+--- origsrc/xmlrpc-c-1.06.30/src/cpp/dll.make	2005-12-07 18:10:15.000000000 -0600
++++ src/xmlrpc-c-1.06.30/src/cpp/dll.make	2008-07-23 21:18:45.578125000 -0500
+@@ -5,9 +5,22 @@
+ # This is to be included by 'Makefile'.  Most of the make variables here
+ # come from the main make file.
+  
++LADD = -L$(BLDDIR)/src/.libs -lxmlrpc -L$(BLDDIR)/lib/libutil/.libs -lxmlrpc_util
++SERVER_LADD = -lxmlrpc_server -L. -lxmlrpc++
++ABYSS_LADD = -L$(BLDDIR)/lib/abyss/src/.libs -lxmlrpc_abyss -lxmlrpc_server_abyss -lxmlrpc_server++
++CLIENT_LADD = -lxmlrpc_client -L. -lxmlrpc++
+ 
+-$(SHLIB_PREFIX)libxmlrpc++$(DLLVER).dll: $(LIBXMLRPCPP_OBJS)
+-	$(LD) $(LDSHLIB) -Wl,--export-all-symbols \
+-            -Wl,-soname,$@ \
+-            -Wl,--out-implib,libxmlrpc++.dll.a -o $@ $(LDFLAGS) \
+-            $^ $(LDLIBS) $(LADD) 
++$(SHLIB_PREFIX)xmlrpc++-$(MAJ).dll: $(LIBXMLRPCPP_OBJS)
++	$(SHLIB_RULE)
++
++$(SHLIB_PREFIX)xmlrpc_cpp-$(MAJ).dll: $(LIBXMLRPCPP_OBJS)
++	$(SHLIB_RULE)
++
++$(SHLIB_PREFIX)xmlrpc_server++-$(MAJ).dll: $(LIBXMLRPC_SERVERPP_OBJS)
++	$(SHLIB_RULE) $(SERVER_LADD)
++
++$(SHLIB_PREFIX)xmlrpc_server_abyss++-$(MAJ).dll: $(LIBXMLRPC_SERVER_ABYSSPP_OBJS)
++	$(SHLIB_RULE) $(SERVER_LADD) $(ABYSS_LADD)
++
++$(SHLIB_PREFIX)xmlrpc_client++-$(MAJ).dll: $(LIBXMLRPC_CLIENTPP_OBJS)
++	$(SHLIB_RULE) $(CLIENT_LADD)

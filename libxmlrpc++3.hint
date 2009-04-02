@@ -1,7 +1,7 @@
 category: Net
-requires: cygwin libcurl4 libwww0 libxml2
+requires: cygwin libgcc1 libstdc++6 libxmlrpc3
 external-source: xmlrpc-c
-sdesc: "XML-RPC C/C++ libraries (runtime libraries)"
+sdesc: "XML-RPC C++ libraries (runtim)"
 ldesc: "XML-RPC is a quick-and-easy way to make procedure calls over the 
 Internet. It converts the procedure call into XML document, sends it to 
 a remote server using HTTP, and gets back the response as XML.

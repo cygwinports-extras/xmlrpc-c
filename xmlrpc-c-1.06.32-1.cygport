@@ -1,0 +1,27 @@
+DESCRIPTION="XML-RPC C library"
+HOMEPAGE="http://xmlrpc-c.sourceforge.net/"
+SRC_URI="mirror://sourceforge/${PN}/${P}.tgz"
+PATCH_URI="1.06.30-cygwin-dll.patch
+           1.06.30-as-needed.patch
+           1.06.30-no-undefined.patch
+           1.06.30-cxx.patch
+           1.06.30-no-compat-hdr.patch"
+
+PKG_NAMES="${PN} libxmlrpc3 libxmlrpc++3 libxmlrpc-devel"
+xmlrpc_c_CONTENTS='usr/bin/*.exe usr/share/'
+libxmlrpc3_CONTENTS="--exclude=*++* --exclude=*_cpp* usr/bin/*-3.dll"
+libxmlrpc__3_CONTENTS="usr/bin/*++-3.dll usr/bin/*_cpp-3.dll"
+libxmlrpc_devel_CONTENTS="usr/bin/${PN}-config usr/include/ usr/lib/"
+
+DIFF_EXCLUDES="xmlrpc_amconfig.h*"
+
+MAKEOPTS+=" -j1"
+
+src_compile() {
+	cd ${S}
+	NO_AUTOMAKE=1 cygautoreconf
+	lndirs
+	cd ${B}
+	cygconf --enable-libxml2-backend
+	cygmake
+}

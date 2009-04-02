@@ -1,0 +1,49 @@
+--- origsrc/xmlrpc-c-1.06.30/Makefile.common	2007-07-12 19:32:20.000000000 -0500
++++ src/xmlrpc-c-1.06.30/Makefile.common	2008-07-23 21:18:45.500000000 -0500
+@@ -72,7 +72,7 @@
+ # only when we make a non-backward-compatible change to the library.  So
+ # e.g. libxmlrpc for Xmlrpc-c 1.06.01 is named libxmlrpc.so.3.6.1.
+ 
+-LDFLAGS_VERSINFO = -version-info 9:15:6  # 3.6.15
++LDFLAGS_VERSINFO = -version-info 9:15:6 -no-undefined  # 3.6.15
+ 
+ # CURDIR was introduced in GNU Make 3.77.
+ ifeq ($(CURDIR)x,x)
+--- origsrc/xmlrpc-c-1.06.30/lib/abyss/src/Makefile	2006-06-10 11:51:46.000000000 -0500
++++ src/xmlrpc-c-1.06.30/lib/abyss/src/Makefile	2008-07-23 21:18:45.531250000 -0500
+@@ -43,7 +43,7 @@
+   trace.lo \
+ 
+ 
+-libxmlrpc_abyss.la: $(ABYSS_OBJS)
++libxmlrpc_abyss.la: $(ABYSS_OBJS) ../../libutil/libxmlrpc_util.la
+ 	$(LIBTOOL) --mode=link $(CCLD) -o $@ $(LIBLDFLAGS) $^
+ 
+ $(ABYSS_OBJS):%.lo:%.c
+--- origsrc/xmlrpc-c-1.06.30/src/Makefile	2008-06-08 17:57:15.000000000 -0500
++++ src/xmlrpc-c-1.06.30/src/Makefile	2008-07-23 21:18:45.562500000 -0500
+@@ -142,20 +144,20 @@
+ 	$(LIBTOOL) --mode=link $(CCLD) -o $@ $(LIBLDFLAGS) \
+ 	  $(LIBXMLRPC_OBJS) $(LIBXMLRPC_LIBDEP) 
+ 
+-libxmlrpc_client.la: $(LIBXMLRPC_CLIENT_OBJS) $(TRANSPORT_OBJS)
++libxmlrpc_client.la: $(LIBXMLRPC_CLIENT_OBJS) $(TRANSPORT_OBJS) libxmlrpc.la
+ 	$(LIBTOOL) --mode=link $(CCLD) -o $@ $(LIBLDFLAGS) \
+ 	  $(LIBXMLRPC_CLIENT_OBJS) $(TRANSPORT_OBJS) \
+ 	  $(LIBXMLRPC_CLIENT_LIBDEP) $(TRANSPORT_LIBDEP) \
+ 
+-libxmlrpc_server.la: $(LIBXMLRPC_SERVER_OBJS)
++libxmlrpc_server.la: $(LIBXMLRPC_SERVER_OBJS) libxmlrpc.la
+ 	$(LIBTOOL) --mode=link $(CCLD) -o $@ $(LIBLDFLAGS) \
+ 	  $(LIBXMLRPC_SERVER_OBJS) $(LIBXMLRPC_SERVER_LIBDEP)
+ 
+-libxmlrpc_server_abyss.la: $(LIBXMLRPC_SERVER_ABYSS_OBJS)
++libxmlrpc_server_abyss.la: $(LIBXMLRPC_SERVER_ABYSS_OBJS) libxmlrpc.la
+ 	$(LIBTOOL) --mode=link $(CCLD) -o $@ $(LIBLDFLAGS) \
+ 	  $(LIBXMLRPC_SERVER_ABYSS_OBJS) $(LIBXMLRPC_SERVER_ABYSS_LIBDEP)
+ 
+-libxmlrpc_server_cgi.la: $(LIBXMLRPC_SERVER_CGI_OBJS)
++libxmlrpc_server_cgi.la: $(LIBXMLRPC_SERVER_CGI_OBJS) libxmlrpc.la
+ 	$(LIBTOOL) --mode=link $(CCLD) -o $@ $(LIBLDFLAGS) \
+ 	  $(LIBXMLRPC_SERVER_CGI_OBJS) $(LIBXMLRPC_SERVER_CGI_LIBDEP)
+ 

@@ -1,0 +1,53 @@
+Just in case we ever need to use the builtin expat backend instead of libxml2.
+
+--- origsrc/xmlrpc-c-1.06.30/lib/abyss/src/Makefile	2006-06-10 11:51:46.000000000 -0500
++++ src/xmlrpc-c-1.06.30/lib/abyss/src/Makefile	2008-07-23 21:18:45.531250000 -0500
+@@ -43,7 +43,7 @@
+   trace.lo \
+ 
+ 
+-libxmlrpc_abyss.la: $(ABYSS_OBJS)
++libxmlrpc_abyss.la: $(ABYSS_OBJS) ../../libutil/libxmlrpc_util.la
+ 	$(LIBTOOL) --mode=link $(CCLD) -o $@ $(LIBLDFLAGS) $^
+ 
+ $(ABYSS_OBJS):%.lo:%.c
+--- origsrc/xmlrpc-c-1.06.30/lib/expat/Makefile	2006-07-11 21:00:38.000000000 -0500
++++ src/xmlrpc-c-1.06.30/lib/expat/Makefile	2008-07-23 21:18:45.546875000 -0500
+@@ -6,7 +6,7 @@
+ include $(SRCDIR)/Makefile.config
+ 
+ # Build up SUBDIRS:
+-SUBDIRS = gennmtab xmlparse xmltok
++SUBDIRS = gennmtab xmltok xmlparse
+ 
+ default: all
+ 
+--- origsrc/xmlrpc-c-1.06.30/lib/expat/xmlparse/Makefile	2006-06-18 12:34:34.000000000 -0500
++++ src/xmlrpc-c-1.06.30/lib/expat/xmlparse/Makefile	2008-07-23 21:18:45.562500000 -0500
+@@ -26,7 +26,7 @@
+ 
+ LIBLDFLAGS = $(LDFLAGS_VERSINFO) -rpath $(LIBINST_DIR) $(LADD)
+ 
+-libxmlrpc_xmlparse.la: $(LIBXMLRPC_XMLPARSE_OBJS)
++libxmlrpc_xmlparse.la: $(LIBXMLRPC_XMLPARSE_OBJS) ../xmltok/libxmlrpc_xmltok.la
+ 	$(LIBTOOL) --mode=link $(CCLD) -o $@ $(LIBLDFLAGS) $^
+ 
+ CFLAGS = $(CFLAGS_COMMON) $(CFLAGS_PERSONAL) $(CADD)
+--- origsrc/xmlrpc-c-1.06.30/src/Makefile	2008-06-08 17:57:15.000000000 -0500
++++ src/xmlrpc-c-1.06.30/src/Makefile	2008-07-23 21:18:45.562500000 -0500
+@@ -9,6 +9,7 @@
+ 
+ ABYSS_LIBDIR = $(BUILDDIR)/lib/abyss/src/.libs
+ LIBUTIL_LIBDIR = $(BUILDDIR)/lib/libutil/.libs
++XMLPARSE_LIBDIR = $(BUILDDIR)/lib/expat/xmlparse/.libs
+ 
+ default: all
+ 
+@@ -51,6 +52,7 @@
+   LIBXML_LIBS = $(shell xml2-config --libs)
+ else
+   LIBXML_INCLUDES = -I$(SRCDIR)/lib/expat/xmlparse
++  LIBXML_LIBS = -L$(XMLPARSE_LIBDIR) -lxmlrpc_xmlparse
+ endif
+ 
+ ABYSS_INCLUDES = -I$(SRCDIR)/lib/abyss/src
