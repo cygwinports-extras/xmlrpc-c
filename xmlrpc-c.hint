@@ -1,5 +1,5 @@
 category: Net
-requires: cygwin libgcc1 libxmlrpc3
+requires: libgcc1 libxmlrpc3
 sdesc: "XML-RPC C/C++ libraries (test executables)"
 ldesc: "XML-RPC is a quick-and-easy way to make procedure calls over the 
 Internet. It converts the procedure call into XML document, sends it to 

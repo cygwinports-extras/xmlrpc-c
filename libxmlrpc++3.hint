@@ -1,5 +1,5 @@
 category: Net
-requires: cygwin libgcc1 libstdc++6 libxmlrpc3
+requires: libgcc1 libstdc++6 libxmlrpc3
 external-source: xmlrpc-c
 sdesc: "XML-RPC C++ libraries (runtim)"
 ldesc: "XML-RPC is a quick-and-easy way to make procedure calls over the 
