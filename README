@@ -7,7 +7,7 @@ a remote server using HTTP, and gets back the response as XML.
 This library provides a modular implementation of XML-RPC for C and C++.
 
 Runtime requirements:
-  cygwin-1.7.0-44
+  cygwin-1.7.0-52
   libcurl4-7.19.4-1
   libgcc1-4.3.2-2
   libstdc++6-4.3.2-2
@@ -18,10 +18,10 @@ Build requirements:
   autoconf2.5-2.63-10
   automake1.4-1.4p6-10
   binutils-20080624-2
-  cygport-0.9.6-1
+  cygport-0.9.8-1
   gcc4-core-4.3.2-2
   gcc4-g++-4.3.2-2
-  libtool-2.2.7a-13
+  libtool-2.2.7a-14
   make-3.81-2
   sed-4.1.5-2
 
@@ -34,18 +34,18 @@ Canonical download:
 -------------------------------------------
 
 Build instructions:
-  unpack xmlrpc-c-1.06.32-X-src.tar.bz2
+  unpack xmlrpc-c-1.06.35-X-src.tar.bz2
     if you use setup to install this src package, it will be
 	 unpacked under /usr/src automatically
   cd /usr/src
-  cygport ./xmlrpc-c-1.06.32-X.cygport all
+  cygport ./xmlrpc-c-1.06.35-X.cygport all
 
 This will create:
-  /usr/src/libxmlrpc++3-1.06.32-X.tar.bz2
-  /usr/src/libxmlrpc-devel-1.06.32-X.tar.bz2
-  /usr/src/libxmlrpc3-1.06.32-X.tar.bz2
-  /usr/src/xmlrpc-c-1.06.32-X-src.tar.bz2
-  /usr/src/xmlrpc-c-1.06.32-X.tar.bz2
+  /usr/src/libxmlrpc++3-1.06.35-X.tar.bz2
+  /usr/src/libxmlrpc-devel-1.06.35-X.tar.bz2
+  /usr/src/libxmlrpc3-1.06.35-X.tar.bz2
+  /usr/src/xmlrpc-c-1.06.35-X-src.tar.bz2
+  /usr/src/xmlrpc-c-1.06.35-X.tar.bz2
 
 -------------------------------------------
 
@@ -74,7 +74,6 @@ Files included in the binary packages:
 
 (libxmlrpc-devel)
   /usr/bin/xmlrpc-c-config
-  /usr/include/XmlRpcCpp.h
   /usr/include/xmlrpc-c/abyss.h
   /usr/include/xmlrpc-c/base.h
   /usr/include/xmlrpc-c/base.hpp
@@ -133,6 +132,9 @@ Files included in the binary packages:
 ------------------
 
 Port Notes:
+
+----- version 1.06.35-1 -----
+Version bump.
 
 ----- version 1.06.32-1 -----
 Initial release for Cygwin 1.7.
